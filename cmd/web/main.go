@@ -7,9 +7,9 @@ import (
 	"time"
 
 	"github.com/alexedwards/scs/v2"
-	"github.com/nickhildpac/learn-go-web/pkg/config"
-	"github.com/nickhildpac/learn-go-web/pkg/handlers"
-	"github.com/nickhildpac/learn-go-web/pkg/render"
+	"github.com/nickhildpac/bookings-goapp/pkg/config"
+	"github.com/nickhildpac/bookings-goapp/pkg/handlers"
+	"github.com/nickhildpac/bookings-goapp/pkg/render"
 )
 
 const portNumber = ":8081"

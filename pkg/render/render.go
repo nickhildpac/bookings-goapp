@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/nickhildpac/learn-go-web/pkg/config"
-	"github.com/nickhildpac/learn-go-web/pkg/models"
+	"github.com/nickhildpac/bookings-goapp/pkg/config"
+	"github.com/nickhildpac/bookings-goapp/pkg/models"
 )
 
 var app *config.AppConfig

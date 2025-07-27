@@ -3,9 +3,9 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/nickhildpac/learn-go-web/pkg/config"
-	"github.com/nickhildpac/learn-go-web/pkg/models"
-	"github.com/nickhildpac/learn-go-web/pkg/render"
+	"github.com/nickhildpac/bookings-goapp/pkg/config"
+	"github.com/nickhildpac/bookings-goapp/pkg/models"
+	"github.com/nickhildpac/bookings-goapp/pkg/render"
 )
 
 type Repository struct {
