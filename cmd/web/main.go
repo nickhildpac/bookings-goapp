@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
+	"github.com/alexedwards/scs/v2"
 	"github.com/nickhildpac/learn-go-web/pkg/config"
 	"github.com/nickhildpac/learn-go-web/pkg/handlers"
 	"github.com/nickhildpac/learn-go-web/pkg/render"
@@ -12,8 +14,18 @@ import (
 
 const portNumber = ":8081"
 
+var app config.AppConfig
+var session *scs.SessionManager
+
 func main() {
-	var app config.AppConfig
+	app.InProd = false
+	session = scs.New()
+	session.Lifetime = 24 * time.Hour
+	session.Cookie.Persist = true
+	session.Cookie.SameSite = http.SameSiteLaxMode
+	session.Cookie.Secure = app.InProd
+
+	app.Session = session
 	tc, err := render.CreateTemplateCacheNew()
 	if err != nil {
 		log.Fatal("cannot create template cache")
@@ -23,7 +35,6 @@ func main() {
 	repo := handlers.NewRepo(&app)
 	handlers.NewHandlers(repo)
 	render.NewTemplate(&app)
-	fmt.Println("Hello go web")
 	// http.HandleFunc("/", handlers.Repo.Home)
 	// http.HandleFunc("/about", handlers.Repo.About)
 	// http.ListenAndServe(portNumber, nil)
