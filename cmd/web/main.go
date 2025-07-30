@@ -7,9 +7,9 @@ import (
 	"time"
 
 	"github.com/alexedwards/scs/v2"
-	"github.com/nickhildpac/bookings-goapp/pkg/config"
-	"github.com/nickhildpac/bookings-goapp/pkg/handlers"
-	"github.com/nickhildpac/bookings-goapp/pkg/render"
+	"github.com/nickhildpac/bookings-goapp/internal/config"
+	"github.com/nickhildpac/bookings-goapp/internal/handlers"
+	"github.com/nickhildpac/bookings-goapp/internal/render"
 )
 
 const portNumber = ":8081"
@@ -38,7 +38,7 @@ func main() {
 	// http.HandleFunc("/", handlers.Repo.Home)
 	// http.HandleFunc("/about", handlers.Repo.About)
 	// http.ListenAndServe(portNumber, nil)
-	fmt.Printf("Starting application on port %s", portNumber)
+	fmt.Printf("Starting application on port %s\n", portNumber)
 	srv := &http.Server{
 		Addr:    portNumber,
 		Handler: routes(&app),
