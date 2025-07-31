@@ -1,6 +1,9 @@
+// Package models has structs used over different parts
 package models
 
-// holds data send to templates
+import "github.com/nickhildpac/bookings-goapp/internal/forms"
+
+// TemplateData holds data send to templates
 type TemplateData struct {
 	StringMap map[string]string
 	IntMap    map[string]int
@@ -10,4 +13,5 @@ type TemplateData struct {
 	Flash     string
 	Warning   string
 	Error     string
+	Form      *forms.Form
 }
