@@ -1,0 +1,12 @@
+mode: set
+github.com/nickhildpac/bookings-goapp/cmd/web/main.go:22.13,24.16 2 0
+github.com/nickhildpac/bookings-goapp/cmd/web/main.go:24.16,26.3 1 0
+github.com/nickhildpac/bookings-goapp/cmd/web/main.go:30.2,36.16 4 0
+github.com/nickhildpac/bookings-goapp/cmd/web/main.go:39.18,50.16 10 1
+github.com/nickhildpac/bookings-goapp/cmd/web/main.go:50.16,53.3 2 0
+github.com/nickhildpac/bookings-goapp/cmd/web/main.go:54.2,59.12 6 1
+github.com/nickhildpac/bookings-goapp/cmd/web/middleware.go:10.53,11.71 1 1
+github.com/nickhildpac/bookings-goapp/cmd/web/middleware.go:11.71,14.3 2 0
+github.com/nickhildpac/bookings-goapp/cmd/web/middleware.go:18.45,27.2 3 1
+github.com/nickhildpac/bookings-goapp/cmd/web/middleware.go:30.50,32.2 1 1
+github.com/nickhildpac/bookings-goapp/cmd/web/routes.go:12.49,39.2 20 1
