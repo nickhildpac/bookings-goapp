@@ -31,6 +31,10 @@ var session *scs.SessionManager
 func getRoutes() http.Handler {
 	gob.Register(models.Reservations{})
 	app.InProd = false
+	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
+	app.InfoLog = infoLog
+	errorLog := log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+	app.ErrorLog = errorLog
 	session = scs.New()
 	session.Lifetime = 24 * time.Hour
 	session.Cookie.Persist = true
@@ -51,7 +55,7 @@ func getRoutes() http.Handler {
 
 	mux := chi.NewRouter()
 	mux.Use(middleware.Recoverer)
-	mux.Use(NoSurf)
+	// mux.Use(NoSurf)
 	mux.Use(WriteToConsole)
 	mux.Use(SessionLoad)
 	mux.Get("/", Repo.Home)
@@ -97,7 +101,7 @@ func SessionLoad(next http.Handler) http.Handler {
 func CreateTestTemplateCacheNew() (map[string]*template.Template, error) {
 	// myCache := make(map[string] *template.Template)
 	myCache := map[string]*template.Template{}
-	pages, err := filepath.Glob("./../../templates/*.page.tmpl")
+	pages, err := filepath.Glob("../../templates/*.page.tmpl")
 	if err != nil {
 		return myCache, err
 	}
@@ -108,12 +112,12 @@ func CreateTestTemplateCacheNew() (map[string]*template.Template, error) {
 		if err != nil {
 			return myCache, err
 		}
-		matches, err := filepath.Glob("./../../templates/*.layout.tmpl")
+		matches, err := filepath.Glob("../../templates/*.layout.tmpl")
 		if err != nil {
 			return myCache, err
 		}
 		if len(matches) > 0 {
-			ts, err = ts.ParseGlob("./../../templates/*.layout.tmpl")
+			ts, err = ts.ParseGlob("../../templates/*.layout.tmpl")
 			if err != nil {
 				return myCache, err
 			}

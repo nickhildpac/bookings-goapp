@@ -5,9 +5,11 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/alexedwards/scs/v2"
+	"github.com/nickhildpac/bookings-goapp/helpers"
 	"github.com/nickhildpac/bookings-goapp/internal/config"
 	"github.com/nickhildpac/bookings-goapp/internal/handlers"
 	"github.com/nickhildpac/bookings-goapp/internal/models"
@@ -18,6 +20,8 @@ const portNumber = ":8081"
 
 var app config.AppConfig
 var session *scs.SessionManager
+var infoLog *log.Logger
+var errorLog *log.Logger
 
 func main() {
 	err := run()
@@ -38,6 +42,10 @@ func main() {
 
 func run() error {
 	gob.Register(models.Reservations{})
+	infoLog = log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
+	app.InfoLog = infoLog
+	errorLog = log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+	app.ErrorLog = errorLog
 	app.InProd = false
 	session = scs.New()
 	session.Lifetime = 24 * time.Hour
@@ -56,5 +64,6 @@ func run() error {
 	repo := handlers.NewRepo(&app)
 	handlers.NewHandlers(repo)
 	render.NewTemplate(&app)
+	helpers.NewHelpers(&app)
 	return nil
 }
